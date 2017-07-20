@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="stylesheet" href="/vendor/bootstrap-table/css/bootstrap-table.min.css"/>
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/vendor/summernote/summernote.css"/>
+</head>
+<body>
+<div class="content">
+    <% if(news){ %>
+    <div id="news-id" hidden="hidden" news-id=<%= news._id %>></div>
+    <% }else{ %>
+    <div id="news-id" hidden="hidden"></div>
+    <% } %>
+
+    <% if(news){ %>
+    <label class="control-label">当前图片：</label>
+    <br/>
+    <img src="<%=news.describeThePicture%>" width="210px"/>
+    <br/><br/>
+    <label class="control-label">重新选择图片：</label>
+    <% } else {%>
+    <label class="control-label">选择图片：</label>
+    <%}%>
+    <input id="news-pic" type="file" class="file" data-show-preview="true"/>
+    <br/>
+    <label class="control-label">标题：</label>
+    <div>
+        <% if(news){ %>
+        <input id="news-title" class="form-control" value="<%= news.title %>"/>
+        <% }else{ %>
+        <input class="form-control" id="news-title"/>
+        <% } %>
+    </div>
+    <br/>
+    <label class="control-label">摘要：</label>
+    <div>
+        <textarea id="news-digest" class="form-control" rows="3" placeholder="输入内容..."><% if(news){ %><%= news.digest %><% } %></textarea>
+    </div>
+    <br/>
+    <label class="control-label">正文内容：</label>
+
+    <% if(news){ %>
+    <div id="news-content" class="summernote" code="<%=news.content%>"></div>
+    <% }else{ %>
+    <div id="news-content" class="summernote" code=""></div>
+    <% } %>
+    <div>
+        <button id="news-save-btn" class="btn btn-primary">提交发布</button>
+    </div>
+</div>
+<!--vendor with local-->
+<script src="/vendor/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/vendor/bootstrap-table/js/bootstrap-table.min.js"></script>
+<script src="/vendor/bootstrap-table/local/bootstrap-table-zh-CN.min.js"></script>
+<script src="/vendor/summernote/summernote.js"></script>
+<script src="/vendor/summernote/lang/summernote-zh-CN.js"></script>
+
+<script src="/javascripts/news-save.js"></script>
+</body>
+</html>
